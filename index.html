@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>VPD Calculator</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <!-- Favicon -->
+      <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+      <!-- Favicon -->
+
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			background-color: #f2f2f2;
+		}
+		
+		h1 {
+			color: #333333;
+			text-align: center;
+		}
+		
+		label {
+			display: block;
+			margin-bottom: 5px;
+			color: #333333;
+		}
+		
+		input[type=number] {
+			padding: 5px;
+			border-radius: 5px;
+			border: none;
+			background-color: #ffffff;
+			box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+			margin-bottom: 10px;
+			width: 100%;
+			box-sizing: border-box;
+		}
+		
+		button {
+			background-color: #4CAF50;
+			color: #ffffff;
+			border: none;
+			padding: 10px 20px;
+			border-radius: 5px;
+			cursor: pointer;
+			transition: all 0.3s ease-in-out;
+		}
+		
+		button:hover {
+			background-color: #3e8e41;
+		}
+		
+		p {
+			font-size: 18px;
+			margin-top: 20px;
+			text-align: center;
+			color: #333333;
+		}
+		
+		footer {
+			background-color: #f2f2f2;
+			color: #000000;
+			padding: 10px;
+			text-align: center;
+			position: absolute;
+			bottom: 0;
+			width: 100%;
+		}
+	</style>
+</head>
+<body>
+	<h1>VPD Calculator</h1>
+	
+	<label for="hsc">Enter your HSC result:</label>
+	<input type="number" id="hsc"><br><br>
+	
+	<label for="cgpa">Enter your University CGPA:</label>
+	<input type="number" id="cgpa"><br><br>
+	
+	<label for="mpg">Enter your University minimum passing grade:</label>
+	<input type="number" id="mpg"><br><br>
+	
+	<button onclick="calculate()">Calculate</button>
+	
+	<p id="result"></p>
+	
+	<script>
+	function calculate() {
+		let h = parseFloat(document.getElementById("hsc").value);
+		let h1 = (5 - h) * 3 / (5 - 1);
+		let u = parseFloat(document.getElementById("cgpa").value);
+		let m = parseFloat(document.getElementById("mpg").value);
+		let u1 = (4 - u) * 3 / (4 - m);
+		let v = 1 + (u1 + h1) / 2;
+		let result = document.getElementById("result");
+
+		if(v <= 1.5) {
+			result.innerHTML = "Your VPD is : " + v + " Sehr Gut (Very Good)";
+		} else if(v <= 2.5 && v > 1.5) {
+			result.innerHTML = "Your VPD is : " + v + " Gut (Good)";
+		} else if(v <= 3.5 && v > 2.5) {
+			result.innerHTML = "Your VPD is : " + v + " Befriedigend (Satisfying)";
+            } else if(v <= 4.9 && v > 3.6) {
+			result.innerHTML = "Your VPD is : " + v + " Ausreichend (Sufficient)";
+		} else {
+			result.innerHTML = "Nicht ausreichend (Insufficient)";
+		}
+	}
+</script>
+
+
+<footer>Made by <a href="https://www.facebook.com/rajibhasenraju">Rajib Hasen Raju</a></footer>
+
